@@ -3,12 +3,12 @@ const fs = require('fs');
 const fileContent = fs.readFileSync('./2023/day2.txt', 'utf-8');
 const lines = fileContent.split('\n');
 
-function calculateBalls(part) {
+function calculateCubes(part) {
     const regex = /(\d+) (red|green|blue)/g;
     let match;
-    let redBalls = 0;
-    let greenBalls = 0;
-    let blueBalls = 0;
+    let redCubes = 0;
+    let greenCubes = 0;
+    let blueCubes = 0;
 
     while ((match = regex.exec(part)) !== null) {
         const count = parseInt(match[1]);
@@ -16,18 +16,18 @@ function calculateBalls(part) {
 
         switch (color) {
             case 'red':
-                redBalls += count;
+                redCubes += count;
                 break;
             case 'green':
-                greenBalls += count;
+                greenCubes += count;
                 break;
             case 'blue':
-                blueBalls += count;
+                blueCubes += count;
                 break;
         }
     }
 
-    return { redBalls, greenBalls, blueBalls };
+    return { redCubes, greenCubes, blueCubes };
 }
 
 let sum = 0;
@@ -36,25 +36,24 @@ for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
     const parts = line.split(';');
 
-    const gameId = i + 1;
-
-    let flag = false;
-    let redBalls, greenBalls, blueBalls;
+    let redCubes, greenCubes, blueCubes;
+    let maxRed = 0,
+        maxGreen = 0,
+        maxBlue = 0;
 
     for (const part of parts) {
-        console.log(part);
+        //console.log(part);
 
-        ({ redBalls, greenBalls, blueBalls } = calculateBalls(part));
+        ({ redCubes, greenCubes, blueCubes } = calculateCubes(part));
 
-        console.log(redBalls, greenBalls, blueBalls);
-
-        if (redBalls > 12 || greenBalls > 13 || blueBalls > 14) {
-            flag = true;
-            break;
-        }
+        //console.log(redCubes, greenCubes, blueCubes);
+        
+        if (maxRed < redCubes) maxRed = redCubes;
+        if (maxGreen < greenCubes) maxGreen = greenCubes;
+        if (maxBlue < blueCubes) maxBlue = blueCubes;
     }
 
-    if (flag == false) sum += gameId;
+    sum += maxRed * maxGreen * maxBlue;
 }
 
 console.log(sum);

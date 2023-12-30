@@ -87,9 +87,7 @@ let count = 0;
 
 for (let i = 0; i < arr.length; i++) {
     count += calculate(arr[i]);
-}
-for (let i = 0; i < arr.length; i++) {
-    console.log(firstNumber(arr[i]), lastNumber(arr[i]));
+    //console.log(firstNumber(arr[i]), lastNumber(arr[i]));
 }
 
 console.log(count);
