@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-const fileContent = fs.readFileSync('./2023/day2.txt', 'utf-8');
-const lines = fileContent.split('\n');
+const input = fs.readFileSync('./2023/day2.txt', 'utf-8');
+const lines = input.split('\n');
 
 function calculateCubes(part) {
     const regex = /(\d+) (red|green|blue)/g;

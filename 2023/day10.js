@@ -1,14 +1,10 @@
 const fs = require('fs');
 
-const fileContent = fs.readFileSync('./2023/day10.txt', 'utf-8');
-
-function parseFileContentToArray(content) {
-    const lines = content.trim().split('\n');
-    const parsedArray = lines.map(line => line.trim().split(''));
-    return parsedArray;
-}
-
-const arr = parseFileContentToArray(fileContent);
+const input = fs.readFileSync('./2023/day10.txt', 'utf-8');
+const arr = input
+    .trim()
+    .split('\n')
+    .map(line => [...line.trim()]);
 
 function findStart(arr) {
     for (let i = 0; i < arr.length; i++) {
@@ -23,7 +19,6 @@ function findStart(arr) {
 
 function calculateFurthestPoint(arr) {
     const start = findStart(arr);
-    
 }
 
 const steps = calculateFurthestPoint(arr);

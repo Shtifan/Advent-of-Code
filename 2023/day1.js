@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-const fileContent = fs.readFileSync('./2023/day1.txt', 'utf-8');
-const arr = fileContent.split('\n').filter(Boolean);
+const input = fs.readFileSync('./2023/day1.txt', 'utf-8');
+const arr = input.split('\n').filter(Boolean);
 
 const numberMap = {
     one: 1,

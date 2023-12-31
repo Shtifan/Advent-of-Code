@@ -1,15 +1,7 @@
 const fs = require('fs');
 
-const fileContent = fs.readFileSync('./2023/day4.txt', 'utf-8');
-const lines = fileContent.split('\n');
-
-function points(n) {
-    if (n === 0) {
-        return 0;
-    } else {
-        return Math.pow(2, n - 1);
-    }
-}
+const input = fs.readFileSync('./2023/day4.txt', 'utf-8');
+const lines = input.split('\n');
 
 function checkWinning(parts) {
     let numbers = parts[0]
@@ -25,12 +17,11 @@ function checkWinning(parts) {
 
     const correctGuesses = winning.filter(winning => numbers.includes(winning)).length;
 
-    //console.log(correctGuesses);
-
-    return points(correctGuesses);
+    return correctGuesses;
 }
 
 let sum = 0;
+let copies = Array(lines.length).fill(0);
 
 for (let i = 0; i < lines.length; i++) {
     let line = lines[i].trim();
@@ -41,7 +32,17 @@ for (let i = 0; i < lines.length; i++) {
     const parts = lineWithoutCardNumber.split('|');
     //console.log(parts);
 
-    sum += checkWinning(parts);
+    let matches = checkWinning(parts);
+
+    for (let j = i + 1; j < i + matches + 1; j++) {
+        copies[j]++;
+    }
+}
+
+console.log(copies);
+
+for (let i = 0; i < lines.length; i++) {
+    sum += 1 + copies[i];
 }
 
 console.log(sum);
