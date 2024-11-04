@@ -68,10 +68,8 @@ function check(number, arr) {
     return false;
 }
 
-// Filter out numbers that don’t pass the `check` function
 numbers = numbers.filter((number) => check(number, arr));
 
-// Calculate sum
 for (let i = 0; i < numbers.length; i++) {
     sum += numbers[i].value;
 }
